@@ -1,7 +1,9 @@
-public abstract class Vehicle implements Driving {
-	String name;
-	int yearOfRelease;
+import java.time.LocalDate;
 
+public abstract class Vehicle implements Driving {
+	private String name;
+	private int yearOfRelease;
+	private LocalDate now = LocalDate.now();
 	public Vehicle(String name, int yearOfRelease) {
 		// TODO Auto-generated constructor stub
 		this.name = name;
@@ -12,7 +14,10 @@ public abstract class Vehicle implements Driving {
 	public String toString() {
 		return String.format("%s(%d년도 출고), ", name, yearOfRelease);
 	}
-
+	
+	public int getRideTime() {
+		return now.getYear()-this.yearOfRelease+1;
+	}
 	abstract void PrintInfo();
 	abstract void printCarType();
 }
@@ -30,7 +35,9 @@ class Sedan extends Vehicle implements PowerSource, MovingPower {
 			this.movingPower = "엔진";
 		}
 	}
-
+	public int getPrice() {
+		return 2000;
+	}
 	@Override
 	public String getPowerSource() {
 		return powerSource;
@@ -46,12 +53,12 @@ class Sedan extends Vehicle implements PowerSource, MovingPower {
 	}
 
 	@Override
-	void PrintInfo() {
+	public void PrintInfo() {
 		System.out.println(this.toString());
 	}
 
 	@Override
-	void printCarType() {
+	public void printCarType() {
 		System.out.print("Sedan");
 	}
 
@@ -66,7 +73,9 @@ class Hatchback extends Sedan implements Feature {
 		this.peopleCapacity = peopleCapacity;
 		this.loadCapacity = loadCapacity;
 	}
-
+	public int getPrice() {
+		return super.getPrice()+1000;
+	}
 	@Override
 	public int getPeopleCapacity() {
 		// TODO Auto-generated method stub
@@ -94,7 +103,7 @@ class Hatchback extends Sedan implements Feature {
 		System.out.println(this.toString());
 	}
 	@Override
-	void printCarType() {
+	public void printCarType() {
 		// TODO Auto-generated method stub
 		super.printCarType();
 		System.out.println(" - Hatchback");
@@ -110,7 +119,9 @@ class Notchback extends Sedan implements Feature {
 		this.peopleCapacity = peopleCapacity;
 		this.loadCapacity = loadCapacity;
 	}
-
+	public int getPrice() {
+		return super.getPrice()+800;
+	}
 	@Override
 	public int getPeopleCapacity() {
 		// TODO Auto-generated method stub
@@ -137,7 +148,7 @@ class Notchback extends Sedan implements Feature {
 	public void PrintInfo() {
 		System.out.println(this.toString());
 	}
-	void printCarType() {
+	public void printCarType() {
 		// TODO Auto-generated method stub
 		super.printCarType();
 		System.out.println(" - Notchback");
@@ -157,7 +168,9 @@ class SUV extends Vehicle implements PowerSource, MovingPower {
 			this.movingPower = "엔진";
 		}
 	}
-
+	public int getPrice() {
+		return 4000;
+	}
 	@Override
 	public String getPowerSource() {
 		return powerSource;
@@ -173,11 +186,11 @@ class SUV extends Vehicle implements PowerSource, MovingPower {
 	}
 
 	@Override
-	void PrintInfo() {
+	public void PrintInfo() {
 		System.out.println(this.toString());
 	}
 	@Override
-	void printCarType() {
+	public void printCarType() {
 		System.out.print("SUV");
 	}
 
@@ -192,7 +205,9 @@ class Truck extends SUV implements Feature {
 		this.peopleCapacity = peopleCapacity;
 		this.loadCapacity = loadCapacity;
 	}
-
+	public int getPrice() {
+		return super.getPrice()+1200;
+	}
 	@Override
 	public int getPeopleCapacity() {
 		// TODO Auto-generated method stub
@@ -219,7 +234,7 @@ class Truck extends SUV implements Feature {
 	public void PrintInfo() {
 		System.out.println(this.toString());
 	}
-	void printCarType() {
+	public void printCarType() {
 		super.printCarType();
 		System.out.println(" - Truck");
 	}
@@ -234,7 +249,9 @@ class CrossOver extends SUV implements Feature {
 		this.peopleCapacity = peopleCapacity;
 		this.loadCapacity = loadCapacity;
 	}
-
+	public int getPrice() {
+		return super.getPrice()+1000;
+	}
 	@Override
 	public int getPeopleCapacity() {
 		// TODO Auto-generated method stub
@@ -261,7 +278,7 @@ class CrossOver extends SUV implements Feature {
 	public void PrintInfo() {
 		System.out.println(this.toString());
 	}
-	void printCarType() {
+	public void printCarType() {
 		super.printCarType();
 		System.out.println(" - CrossOver");
 	}
