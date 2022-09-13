@@ -6,21 +6,15 @@ public abstract class Vehicle implements Driving {
 		// TODO Auto-generated constructor stub
 		this.name = name;
 		this.yearOfRelease = yearOfRelease;
-		
+
 	}
 
 	public String toString() {
 		return String.format("%s(%d년도 출고), ", name, yearOfRelease);
 	}
 
-	abstract void printInfo();
-	public void printStartDriving() {
-		System.out.println(startDriving);
-	}
-	@Override
-	public void printEndDriving() {
-		System.out.println(endDriving);
-	}
+	abstract void PrintInfo();
+	abstract void printCarType();
 }
 
 class Sedan extends Vehicle implements PowerSource, MovingPower {
@@ -36,7 +30,6 @@ class Sedan extends Vehicle implements PowerSource, MovingPower {
 			this.movingPower = "엔진";
 		}
 	}
-	
 
 	@Override
 	public String getPowerSource() {
@@ -53,8 +46,13 @@ class Sedan extends Vehicle implements PowerSource, MovingPower {
 	}
 
 	@Override
-	void printInfo() {
+	void PrintInfo() {
+		System.out.println(this.toString());
+	}
 
+	@Override
+	void printCarType() {
+		System.out.print("Sedan");
 	}
 
 }
@@ -85,9 +83,21 @@ class Hatchback extends Sedan implements Feature {
 		return "Hatchback";
 	}
 
-	public void printInfo() {
-		System.out.printf(super.toString() + "수용 인원 : %d(명) 적재 용량 : %d(kg) 특징 : %s\n", peopleCapacity,
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString() + String.format("수용 인원 : %d(명) 적재 용량 : %d(kg) 특징 : %s", peopleCapacity,
 				getLoadCapacity(), getFeature());
+	}
+
+	public void PrintInfo() {
+		System.out.println(this.toString());
+	}
+	@Override
+	void printCarType() {
+		// TODO Auto-generated method stub
+		super.printCarType();
+		System.out.println(" - Hatchback");
 	}
 }
 
@@ -117,11 +127,21 @@ class Notchback extends Sedan implements Feature {
 		return "Notchback";
 	}
 
-	public void printInfo() {
-		System.out.printf(super.toString() + "%s 수용 인원 : %d(명) 적재 용량 : %d(kg) 특징 : %s\n", peopleCapacity,
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString() + String.format("수용 인원 : %d(명) 적재 용량 : %d(kg) 특징 : %s", peopleCapacity,
 				getLoadCapacity(), getFeature());
 	}
 
+	public void PrintInfo() {
+		System.out.println(this.toString());
+	}
+	void printCarType() {
+		// TODO Auto-generated method stub
+		super.printCarType();
+		System.out.println(" - Notchback");
+	}
 }
 
 class SUV extends Vehicle implements PowerSource, MovingPower {
@@ -139,16 +159,6 @@ class SUV extends Vehicle implements PowerSource, MovingPower {
 	}
 
 	@Override
-	public void printStartDriving() {
-		System.out.println(startDriving);
-	}
-
-	@Override
-	public void printEndDriving() {
-		System.out.println(endDriving);
-	}
-
-	@Override
 	public String getPowerSource() {
 		return powerSource;
 	}
@@ -163,8 +173,12 @@ class SUV extends Vehicle implements PowerSource, MovingPower {
 	}
 
 	@Override
-	void printInfo() {
-
+	void PrintInfo() {
+		System.out.println(this.toString());
+	}
+	@Override
+	void printCarType() {
+		System.out.print("SUV");
 	}
 
 }
@@ -192,16 +206,26 @@ class Truck extends SUV implements Feature {
 	}
 
 	public String getFeature() {
-		return "Hatchback";
+		return "Truck";
 	}
 
-	public void printInfo() {
-		System.out.printf(super.toString() + "수용 인원 : %d(명) 적재 용량 : %d(kg) 특징 : %s\n", peopleCapacity,
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString() + String.format("수용 인원 : %d(명) 적재 용량 : %d(kg) 특징 : %s", peopleCapacity,
 				getLoadCapacity(), getFeature());
+	}
+
+	public void PrintInfo() {
+		System.out.println(this.toString());
+	}
+	void printCarType() {
+		super.printCarType();
+		System.out.println(" - Truck");
 	}
 }
 
-class CrossOver extends Sedan implements Feature {
+class CrossOver extends SUV implements Feature {
 	private int peopleCapacity;
 	private int loadCapacity;
 
@@ -224,12 +248,21 @@ class CrossOver extends Sedan implements Feature {
 	}
 
 	public String getFeature() {
-		return "Notchback";
+		return "CrossOver";
 	}
 
-	public void printInfo() {
-		System.out.printf(super.toString() + "%s 수용 인원 : %d(명) 적재 용량 : %d(kg) 특징 : %s\n", peopleCapacity,
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString() + String.format("수용 인원 : %d(명) 적재 용량 : %d(kg) 특징 : %s", peopleCapacity,
 				getLoadCapacity(), getFeature());
 	}
 
+	public void PrintInfo() {
+		System.out.println(this.toString());
+	}
+	void printCarType() {
+		super.printCarType();
+		System.out.println(" - CrossOver");
+	}
 }

@@ -2,10 +2,6 @@
 interface Driving {
 	String startDriving = "Vehicle Info 시작";
 	String endDriving = "Vehicle Info 끝";
-
-	void printStartDriving();
-
-	void printEndDriving();
 }
 
 interface PowerSource {

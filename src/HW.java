@@ -16,18 +16,16 @@ public class HW {
 	private static final int loadCapacityBundle[] = { 100, 150, 200, 250, 300 };
 
 	public static void main(String[] args) {
-		Vehicle vehicle[] = new Vehicle[random(10, 100)];
+		Vehicle vehicle[] = new Vehicle[50];
 		Vector<Vehicle> vehicleV = new Vector<>();
 		for (int i = 0; i < vehicle.length; i++) {
 			vehicle[i] = makeVehicle();
 			vehicleV.add(vehicle[i]);
 		}
-		vehicle[0].printStartDriving();
 		for (int i = 0; i < vehicle.length; i++) {
 			System.out.printf("[ %d ]", i + 1);
-			vehicleV.get(i).printInfo();
+			vehicleV.get(i).PrintInfo();
 		}
-		vehicle[0].printStartDriving();
 	}
 
 	public static int random(int min, int max) {
@@ -44,27 +42,31 @@ public class HW {
 					powerSourceBundle[random(0, powerSourceBundle.length - 1)],
 					SedanPeopleCapacityBundle[random(0, SedanPeopleCapacityBundle.length - 1)],
 					loadCapacityBundle[random(0, loadCapacityBundle.length - 1)]);
+			break;
 		}
 		case notchback: {
-			vehicle = new Hatchback(SedanModelNameBundle[random(0, SedanModelNameBundle.length - 1)],
+			vehicle = new Notchback(SedanModelNameBundle[random(0, SedanModelNameBundle.length - 1)],
 					yearOfReleaseBundle[random(0, yearOfReleaseBundle.length - 1)],
 					powerSourceBundle[random(0, powerSourceBundle.length - 1)],
 					SedanPeopleCapacityBundle[random(0, SedanPeopleCapacityBundle.length - 1)],
 					loadCapacityBundle[random(0, loadCapacityBundle.length - 1)]);
+			break;
 		}
 		case truck: {
-			vehicle = new Hatchback(SUVModelNameBundle[random(0, SUVModelNameBundle.length - 1)],
+			vehicle = new Truck(SUVModelNameBundle[random(0, SUVModelNameBundle.length - 1)],
 					yearOfReleaseBundle[random(0, yearOfReleaseBundle.length - 1)],
 					powerSourceBundle[random(0, powerSourceBundle.length - 1)],
 					SUVPeopleCapacityBundle[random(0, SUVPeopleCapacityBundle.length - 1)],
 					loadCapacityBundle[random(0, loadCapacityBundle.length - 1)]);
+			break;
 		}
 		case crossOver: {
-			vehicle = new Hatchback(SUVModelNameBundle[random(0, SUVModelNameBundle.length - 1)],
+			vehicle = new CrossOver(SUVModelNameBundle[random(0, SUVModelNameBundle.length - 1)],
 					yearOfReleaseBundle[random(0, yearOfReleaseBundle.length - 1)],
 					powerSourceBundle[random(0, powerSourceBundle.length - 1)],
 					SUVPeopleCapacityBundle[random(0, SUVPeopleCapacityBundle.length - 1)],
 					loadCapacityBundle[random(0, loadCapacityBundle.length - 1)]);
+			break;
 		}
 		}
 		return vehicle;
