@@ -48,13 +48,13 @@ public class HW2 {
 		if (path.isDirectory()) {
 			for (File f : pathArray) {
 				if (f.getName().equals(N1)) {
+					System.out.printf("%s를 %s로 변경 함.", f, afterFile);
 					f.renameTo(afterFile);
-					System.out.printf("%s를 %s로 변경함.", path + "/" + N1, afterFile);
-					f=afterFile;
+					f = afterFile;
 					printType(f);
 					foundN1Flag = true;
 				}
-				foundN1Flag = printR(new File(path + "/" + f.getName()), N1, N2, foundN1Flag);
+				foundN1Flag = printR(f, N1, N2, foundN1Flag);
 			}
 		}
 		return foundN1Flag;

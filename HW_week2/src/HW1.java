@@ -6,7 +6,6 @@ public class HW1 {
 
 	public static void main(String[] args) {
 		print(args[0]);
-
 	}
 
 	static void print(String directoryPath) {
@@ -15,6 +14,7 @@ public class HW1 {
 			System.out.println(directoryPath + "의 디렉토리는 존재하지 않음!!");
 			return;
 		}
+		System.out.println(directoryPath + " 디렉토리의 내용");
 		printR(directoryPath, 0);
 	}
 
@@ -24,12 +24,21 @@ public class HW1 {
 	}
 
 	static void printFileName(int count, File f) {
-		for (int i = 0; i < count; i++) {
+		if (count == 0) {
 			System.out.print("     ");
+		} else {
+			for (int i = 0; i < count; i++) {
+				System.out.print("     ");
+			}
 		}
-		System.out.printf("\u27A5 %s", f.getName());
+
+		if (count != 0) {
+			System.out.printf("%5c ", '\u27A5');
+		}
+		System.out.print(f.getName());
 	}
 
+//	➥ org.eclipse.core.resources.prefs<57 bytes> (파일) [수정일:2022-09-08 12:15:16 (오전)]
 	// Assistant.class<1161 bytes> (파일) [수정일:2022-09-13 09:34:32 (오후)]
 	// BackUp (디렉토리) [수정일:2022-09-13 09:34:32 (오후)]
 	static void printFileInfo(File f) {
@@ -54,7 +63,7 @@ public class HW1 {
 	}
 
 	static void printR(String path, int count) {
-		File currentFile, subDirectories[];
+		File subDirectories[];
 		subDirectories = subDirectoriesArray(path);
 		if (subDirectories != null) {
 			printSubDirectories(subDirectories, count);
